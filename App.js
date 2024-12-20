@@ -57,7 +57,7 @@ app.get("/Edit/:fileName", (req, res) => {
   });
 });
 app.post("/Edit/:fileName", (req, res) => {
-const hisaab = req.body.hisaab;
+  const hisaab = req.body.hisaab;
   fs.writeFile(`Hisaabs/${req.params.fileName}`, hisaab, (err) => {
     if (err) return res.status(404).send("error");
     fs.readdir("Hisaabs", (err, data) => {
@@ -67,7 +67,14 @@ const hisaab = req.body.hisaab;
   });
 });
 app.get("/Delete/:fileName", (req, res) => {
-  res.end("Deleted");
+  const fileName = req.params.fileName;
+  fs.unlink(`Hisaabs/${req.params.fileName}`, (err) => {
+    if (err) return res.status(404).send("error");
+    fs.readdir("Hisaabs", (err, data) => {
+      if (err) return res.status(404).send("error");
+      res.render("index", { files: data });
+    });
+  });
 });
 
 // Start the server
