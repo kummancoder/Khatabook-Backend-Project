@@ -26,21 +26,21 @@
       <!-- Form Box (Content Box) -->
       <form
         class="h-[500px] max-w-screen-md bg-white shadow-lg mx-auto mt-8 rounded-lg p-6 relative"
-        action="/Edit" method="POST" 
+        action="/Edit/<%=file%>" method="POST" 
       >
         <!-- Title Input -->
-        <div class="text-2xl font-semibold text-gray-700">Content Title</div>
+        <div class="text-2xl font-semibold text-gray-700"> <%=file.split(".")[0]%> </div>
         <!-- Content Input -->
         <div class="mt-6">
           <label for="content" class="text-2xl font-semibold text-gray-700">Hisaab</label>
           <textarea
             id="content"
-            name="content"
+            name="hisaab"
             rows="12"
             class="w-full mt-3 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter your content here"
             required
-          ></textarea>
+          ><%=data%></textarea>
         </div>
 
         <!-- Submit Button -->

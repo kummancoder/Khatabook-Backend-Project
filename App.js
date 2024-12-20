@@ -42,19 +42,29 @@ app.post("/Create", (req, res) => {
 });
 
 app.get("/Hisaab/:fileName", (req, res) => {
-   const file = req.params.fileName;
-   fs.readFile(`Hisaabs/${file}`, (err, data) => {
+  const file = req.params.fileName;
+  fs.readFile(`Hisaabs/${file}`, (err, data) => {
     if (err) return res.status(404).send("error");
-    res.render("Hisaab",{file,data});
-   });
+    res.render("Hisaab", { file, data });
+  });
 });
 app.get("/Edit/:fileName", (req, res) => {
   console.log("Edit get method");
-  res.render("Edit");
+  const file = req.params.fileName;
+  fs.readFile(`Hisaabs/${file}`, (err, data) => {
+    if (err) return res.status(404).send("error");
+    res.render("Edit", { file, data });
+  });
 });
-app.post("/Edit", (req, res) => {
-  console.log("Edit Post method");
-  res.render("index");
+app.post("/Edit/:fileName", (req, res) => {
+const hisaab = req.body.hisaab;
+  fs.writeFile(`Hisaabs/${req.params.fileName}`, hisaab, (err) => {
+    if (err) return res.status(404).send("error");
+    fs.readdir("Hisaabs", (err, data) => {
+      if (err) return res.status(404).send("error");
+      res.render("index", { files: data });
+    });
+  });
 });
 app.get("/Delete/:fileName", (req, res) => {
   res.end("Deleted");
