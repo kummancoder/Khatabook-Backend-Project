@@ -18,7 +18,7 @@
         <!-- Action Buttons and Links -->
         <div class="flex gap-6 items-center">
           <!-- Edit Icon -->
-          <a href="/Edit" class="transition-transform transform hover:scale-110">
+          <a href="/Edit/<%=file%>" class="transition-transform transform hover:scale-110">
             <img
               src="/images/edit.png"
               alt="Edit"
@@ -27,7 +27,7 @@
           </a>
 
           <!-- Delete Icon -->
-          <a href="/Delete" class="transition-transform transform hover:scale-110">
+          <a href="/Delete/<%=file%>" class="transition-transform transform hover:scale-110">
             <img
               src="/images/delete.png"
               alt="Delete"
@@ -55,10 +55,9 @@
       <div
         class="h-[500px] max-w-screen-md bg-white shadow-lg mx-auto mt-8 rounded-lg p-6"
       >
-        <div class="text-2xl font-semibold text-gray-700">Content Title</div>
+        <div class="text-2xl font-semibold text-gray-700"><%=file.split(".")[0]%></div>
         <p class="text-gray-600 mt-3">
-          This is a sample content section. Replace this with your dynamic
-          content.
+         <%=data%>
         </p>
         
       </div>

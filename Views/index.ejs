@@ -29,7 +29,8 @@
             </a>
 
             <!-- Button -->
-            <a href="/Create"
+            <a
+              href="/Create"
               class="px-6 py-2 bg-blue-700 hover:bg-blue-600 rounded-lg text-white text-sm font-semibold cursor-pointer shadow-md transform hover:scale-105 transition-transform duration-300"
             >
               Create Hisaab
@@ -39,16 +40,18 @@
       </div>
 
       <!-- All Hisaab Section -->
+      <% files.map(file=> { %>
+
       <div class="allHisaab max-w-screen-lg mx-auto px-6 mt-8">
         <div
           class="Hisaab h-[60px] w-[25vw] bg-blue-700 flex items-center justify-between px-6 rounded-md shadow-xl"
         >
           <div class="flex items-center h-full gap-6">
             <!-- Date -->
-            <span class="text-white font-medium text-lg">10-05-2024</span>
+            <span class="text-white font-medium text-lg"><%=file%></span>
 
             <!-- Image -->
-            <a href="/Hisaab">
+            <a href="/Hisaab/<%= file %>">
               <img
                 src="/images/file.png"
                 alt="file"
@@ -56,9 +59,12 @@
               />
             </a>
           </div>
-          <div class="flex gap-6">
+          <div class="flex gap-4">
             <!-- Edit Icon -->
-            <a href="/Edit" class="transition-transform transform hover:scale-110">
+            <a
+              href="/Edit/<%= file %>"
+              class="transition-transform transform hover:scale-110"
+            >
               <img
                 src="/images/edit.png"
                 alt="Edit"
@@ -67,7 +73,10 @@
             </a>
 
             <!-- Delete Icon -->
-            <a href="/Delete" class="transition-transform transform hover:scale-110">
+            <a
+              href="/Delete/<%= file %>"
+              class="transition-transform transform hover:scale-110"
+            >
               <img
                 src="/images/delete.png"
                 alt="Delete"
@@ -77,6 +86,8 @@
           </div>
         </div>
       </div>
+
+      <% }) %>
     </div>
   </body>
 </html>

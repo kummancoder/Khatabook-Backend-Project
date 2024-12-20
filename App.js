@@ -12,12 +12,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 app.get("/", (req, res) => {
-    const files = fs.readdir("Hisaabs",(err,data)=>
-{
-    if (err) req.status(404).send(err);
-    else res.render("index", {files});
-})
-  
+  fs.readdir("Hisaabs", (err, data) => {
+    console.log(data);
+    if (err) return res.status(404).send(err);
+    else res.render("index", { files: data });
+  });
 });
 app.get("/Create", (req, res) => {
   console.log("Create get Post method");
@@ -33,16 +32,23 @@ app.post("/Create", (req, res) => {
   const year = date.getFullYear(); // Get the full year (e.g., 2024)
   const fileName = `${day}-${month}-${year}`;
   console.log(fileName);
-  fs.writeFile(`Hisaabs/${fileName}`, data, (err) => {
-    if (err) req.status(404).send("error");
-    else res.render("index");
+  fs.writeFile(`Hisaabs/${req.body.title}.txt`, data, (err) => {
+    if (err) return res.status(404).send("error");
+    fs.readdir("Hisaabs", (err, data) => {
+      if (err) return res.status(404).send("error");
+      res.render("index", { files: data });
+    });
   });
 });
 
-app.get("/Hisaab", (req, res) => {
-  res.render("Hisaab");
+app.get("/Hisaab/:fileName", (req, res) => {
+   const file = req.params.fileName;
+   fs.readFile(`Hisaabs/${file}`, (err, data) => {
+    if (err) return res.status(404).send("error");
+    res.render("Hisaab",{file,data});
+   });
 });
-app.get("/Edit", (req, res) => {
+app.get("/Edit/:fileName", (req, res) => {
   console.log("Edit get method");
   res.render("Edit");
 });
@@ -50,7 +56,7 @@ app.post("/Edit", (req, res) => {
   console.log("Edit Post method");
   res.render("index");
 });
-app.get("/Delete", (req, res) => {
+app.get("/Delete/:fileName", (req, res) => {
   res.end("Deleted");
 });
 
