@@ -6,42 +6,48 @@
     <title>Document</title>
     <link href="/styles/output.css" rel="stylesheet" />
   </head>
-  <body>
+  <body class="bg-gray-100">
     <div>
-      <div class="Navbar shadow-md bg-gray-50">
+      <!-- Navbar -->
+      <div class="Navbar shadow-lg bg-gray-50">
         <div
-          class="flex items-center justify-between h-[70px] max-w-screen-xl mx-auto px-4"
+          class="flex items-center justify-between h-[70px] max-w-screen-xl mx-auto px-6"
         >
           <!-- Logo -->
-          <span class="text-3xl font-mono font-bold text-gray-800"
-            >KhataBook</span
-          >
+          <span class="text-3xl font-mono font-bold text-gray-800">
+            KhataBook
+          </span>
 
           <!-- Navigation Links -->
           <div class="flex gap-8 items-center">
             <!-- Home Link -->
             <span
-              class="text-lg font-medium text-gray-700 hover:text-gray-900 cursor-pointer"
-              >Home</span
+            class="text-lg font-medium text-gray-700 hover:text-gray-900 cursor-pointer hover:underline"
             >
+              Home
+            </span>
 
             <!-- Button -->
             <span
-              class="px-4 py-2 bg-blue-700 hover:bg-blue-600 rounded-lg text-white text-sm font-semibold cursor-pointer shadow-md"
-              >Create Hisaab</span
+              class="px-6 py-2 bg-blue-700 hover:bg-blue-600 rounded-lg text-white text-sm font-semibold cursor-pointer shadow-md transform hover:scale-105 transition-transform duration-300"
             >
+              Create Hisaab
+            </span>
           </div>
         </div>
       </div>
-      <div class="allHisaab max-w-screen-xl mx-auto px-4 mt-3">
+
+      <!-- All Hisaab Section -->
+      <div class="allHisaab max-w-screen-xl mx-auto px-6 mt-8">
         <div
-          class="Hisaab h-[50px] w-[23vw] bg-blue-700 flex items-center justify-between px-4 rounded-md shadow-md"
+          class="Hisaab h-[60px] w-[25vw] bg-blue-700 flex items-center justify-between px-6 rounded-md shadow-xl"
         >
-          <div class="flex items-center h-full gap-5">
+          <div class="flex items-center h-full gap-6">
             <!-- Date -->
-            <span class="text-white font-md text-lg">10-05-2024</span>
+            <span class="text-white font-medium text-lg">10-05-2024</span>
+
             <!-- Image -->
-            <a href="">
+            <a href="#">
               <img
                 src="/images/file.png"
                 alt="file"
@@ -49,18 +55,22 @@
               />
             </a>
           </div>
-          <div class="flex gap-5">
-            <a href=""
-              ><img
+          <div class="flex gap-6">
+            <!-- Edit Icon -->
+            <a href="#" class="transition-transform transform hover:scale-110">
+              <img
                 src="/images/edit.png"
                 alt="Edit"
-                class="h-10 w-10 object-contain hover:scale-110 transition-transform duration-200"
-            /></a>
-            <a href="">
+                class="h-10 w-10 object-contain hover:opacity-80 transition-opacity duration-200"
+              />
+            </a>
+
+            <!-- Delete Icon -->
+            <a href="#" class="transition-transform transform hover:scale-110">
               <img
                 src="/images/delete.png"
                 alt="Delete"
-                class="h-10 w-10 object-contain hover:scale-110 transition-transform duration-200"
+                class="h-10 w-10 object-contain hover:opacity-80 transition-opacity duration-200"
               />
             </a>
           </div>
