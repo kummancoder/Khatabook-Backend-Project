@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.get('/', (req, res) => {
-    res.render('Hisaab', { title: 'Tailwind with EJS' });
+    res.render('Edit', { title: 'Tailwind with EJS' });
 });
 
 // Start the server

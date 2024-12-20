@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/styles/output.css" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <!-- Navbar -->
+      <div
+        class="h-[60px] max-w-screen-md mx-auto px-6 flex items-center justify-between shadow-xl rounded-lg bg-white mt-6"
+      >
+        <!-- Date -->
+        <span class="text-xl font-medium text-gray-800">KhataBook</span>
+
+        <!-- Home Link -->
+        <button
+          class="px-6 py-2 bg-blue-700 hover:bg-blue-600 text-white rounded-lg shadow-md hover:scale-105 transition-all duration-300"
+        >
+          Home
+        </button>
+      </div>
+
+      <!-- Form Box (Content Box) -->
+      <form
+        class="h-[500px] max-w-screen-md bg-white shadow-lg mx-auto mt-8 rounded-lg p-6 relative"
+        action="/submit" method="POST" 
+      >
+        <!-- Title Input -->
+        <div class="text-2xl font-semibold text-gray-700">Content Title</div>
+        <!-- Content Input -->
+        <div class="mt-6">
+          <label for="content" class="text-2xl font-semibold text-gray-700">Content</label>
+          <textarea
+            id="content"
+            name="content"
+            rows="12"
+            class="w-full mt-3 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter your content here"
+            required
+          ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="mt-6 px-6 py-2 bg-blue-700 hover:bg-blue-600 text-white rounded-lg shadow-md hover:scale-105 transition-all duration-300 absolute bottom-4"
+        >
+          Edit
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
