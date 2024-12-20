@@ -1,44 +1,61 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 // Set EJS as the templating engine
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 app.use(express.json());
-app.use(express.urlencoded({ extended : true }));
+app.use(express.urlencoded({ extended: true }));
 // Set up static folder for serving CSS
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
-app.get('/', (req, res) => {
-    res.render('index');
+app.get("/", (req, res) => {
+    const files = fs.readdir("Hisaabs",(err,data)=>
+{
+    if (err) req.status(404).send(err);
+    else res.render("index", {files});
+})
+  
 });
-app.get('/Create', (req, res) => {
-    console.log('Create get Post method');
-    res.render('Create');
+app.get("/Create", (req, res) => {
+  console.log("Create get Post method");
+  res.render("Create");
 });
-app.post('/Create', (req, res) => {
-    console.log('Create Post method');
-    res.render('index');
+app.post("/Create", (req, res) => {
+  console.log("Create Post method");
+  let data = req.body.hisaab;
+  console.log(data);
+  const date = new Date();
+  const day = String(date.getDate()).padStart(2, "0"); // Pad single digit days with 0
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // getMonth() returns month from 0-11, so add 1
+  const year = date.getFullYear(); // Get the full year (e.g., 2024)
+  const fileName = `${day}-${month}-${year}`;
+  console.log(fileName);
+  fs.writeFile(`Hisaabs/${fileName}`, data, (err) => {
+    if (err) req.status(404).send("error");
+    else res.render("index");
+  });
 });
 
-app.get('/Hisaab', (req, res) => {
-    res.render('Hisaab');
+app.get("/Hisaab", (req, res) => {
+  res.render("Hisaab");
 });
-app.get('/Edit', (req, res) => {
-    console.log('Edit get method');
-    res.render('Edit');
+app.get("/Edit", (req, res) => {
+  console.log("Edit get method");
+  res.render("Edit");
 });
-app.post('/Edit', (req, res) => {
-    console.log('Edit Post method');
-    res.render('index');
+app.post("/Edit", (req, res) => {
+  console.log("Edit Post method");
+  res.render("index");
 });
-app.get('/Delete', (req, res) => {
-    res.end("Deleted");
+app.get("/Delete", (req, res) => {
+  res.end("Deleted");
 });
 
 // Start the server
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
